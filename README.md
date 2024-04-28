@@ -10,8 +10,6 @@ This is my final year project
 My best model is can be found in here as github does not allow 300 mb upload: https://drive.google.com/file/d/1Ju-iYq02wqi3eFdJrqhHW7ux5MXOyD92/view?usp=drive_link
 
 here is the pip install and version  you might need:
-Package                       Version
------------------------------ ---------------
 absl-py                       2.1.0
 aiofiles                      23.2.1
 aiohttp                       3.9.1
