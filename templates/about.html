@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Online Content Detector</title>
+    <style>
+        @keyframes fadeInAnimation {
+            to {
+                opacity: 1;
+            }
+        }
+    
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: url('https://64.media.tumblr.com/a34c3f9512e57cb4eeb5443b6609e1f1/tumblr_oppdbjbnh01vt7aw9o1_1280.gif') no-repeat center center fixed;
+            background-size: cover;
+        }
+    
+        section, .container {
+            padding: 0;
+            margin: 0;
+        }
+    
+        nav {
+            padding: 15px 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 30px;
+        }
+    
+        nav ul li {
+            padding: 10px 25px;
+        }
+    
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: xx-large;
+            font-weight: bold;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+    
+        nav ul li a:hover, nav ul li a:focus {
+            color: #eaeaea;
+            background-color: #333;
+        }
+    
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px;
+            animation: fadeInAnimation 2s ease forwards;
+        }
+
+        .text-container{
+            width: 100%; /* Full width to stack vertically */
+            text-align: center; /* Center the text inside the container */
+            padding: 10px 0; /* Some padding above and below */
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .image-container {
+            width: 100%; /* Full width to stack vertically */
+            text-align: center; /* Center the text inside the container */
+            padding: 10px 0; /* Some padding above and below */
+        }
+        .responsive-image {
+            max-width: 15%; /* Adjust the image size */
+            height: auto;
+        }
+
+        /* Additional CSS reset for h2 and p tags */
+        h2, p {
+            width: 80%; /* Set the preferred width */
+            margin: 10px auto; /* Center with automatic margins and add space */
+            color: white;
+        }
+    
+        /* Hover styles removed for #intro-text to let JavaScript handle the effect */
+        #intro-text {
+            font-size: large;
+            transition: color 0.5s ease;
+        }
+    
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/model">Services</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>OWO</h1>
+    </header>
+    <div class="content-section">
+        <div class="text-container" id="project-intro-container">
+            <h2 id="project-intro-title">Introduction to the Project</h2>
+            <p id="project-intro-text">
+                This project uses tools that understand and process human language to help make the internet safer by spotting harmful content.
+                It carefully considers how people talk to each other online to tell the difference between harmful and harmless speech. 
+                The goal is to create fair methods that do not worsen existing problems while respecting free speech. 
+                This work also makes it easier to find and report online harm, helping to build a safer online community. 
+                The project addresses the challenges of dealing with complex language and content online, explaining the careful approaches needed to manage online content.
+            </p>
+        </div>
+        <div class="text-container">
+            <h2 id="about-me-title">About Me</h2>
+                <p id="about-me-text">
+                    I'm a 20-year-old student studying Computer Science at Queen Mary University of London. This is my final year project, and I hope you like it.
+                    With technical proficiencies in Java, a good command of Python, and web development experience using HTML, CSS, and PHP, I am excited about the prospect of contributing to Queen Mary.
+                    if you need any other information, please let me know.
+                </p>
+        </div>
+        <div class="image-container" id="project-intro-image">
+            <img src="{{ url_for('static', filename='images/Hamstersit.jpg') }}" alt="Hamster Sitting" class="responsive-image">
+        </div>
+    </div>
+    
+    <script>
+        // Listen for the document to finish loading all content.
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find and store the parts of the web page we need to change.
+            var projectIntroContainer = document.getElementById('project-intro-container');
+            var projectIntroTitle = document.getElementById('project-intro-title');
+            var projectIntroText = document.getElementById('project-intro-text');
+            var projectIntroImage = document.getElementById('project-intro-image');
+
+            // Text and titles to show in English and Chinese.
+            var englishTitle = "Introduction to the Project";
+            var englishText = `
+            This project uses tools to understand human talk to make the internet safer by spotting bad content. 
+            It looks closely at how people chat online to tell apart harmful from harmless stuff. 
+            The goal is to create fair ways to fix and stop problems from getting bigger while keeping free speech safe. 
+            This effort makes it easier to notice and tell others about online dangers, helping to make a safer online space for everyone. 
+            The project deals with the tough job of handling tricky language and stuff on the internet, and it explains the careful plans needed to manage it well.
+            `;
+            var chineseTitle = "项目介绍";
+            var chineseText = `
+                本项目运用理解和处理人类语言的工具，通过识别有害内容来提高互联网安全。
+                它细致考量了人们在线交流的微妙差异，分辨有害和无害的言论。
+                本计划的目标是创建公正平衡的方法，这些方法不仅要解决现有问题，而且要防止问题的扩大，同时保护言论自由的基本权利。
+                该计划简化了识别和报告在线危害的过程，从而促进了一个更安全的数字社区的建设。
+                该项目应对了在互联网上审查复杂语言和内容的挑战，详细说明了有效在线内容管理所需的周密策略。
+            `;
+
+            // Change to Chinese content when mouse enters the project introduction area.
+            projectIntroContainer.addEventListener('mouseenter', function() {
+                projectIntroTitle.textContent = chineseTitle;
+                projectIntroText.textContent = chineseText;
+            });
+
+            // Revert to English content when mouse leaves the project introduction area.
+            projectIntroContainer.addEventListener('mouseleave', function() {
+                projectIntroTitle.textContent = englishTitle;
+                projectIntroText.textContent = englishText;
+            });
+        });
+
+        // Listen for the document to be fully loaded.
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find and store elements for the 'About Me' section.
+            var aboutMeText = document.getElementById('about-me-text');
+            var aboutMeTitle = document.getElementById('about-me-title');
+
+            // Text and titles for the 'About Me' section in English and Chinese.
+            var englishAboutMeTitle = "About Me";
+            var englishAboutMeText = `
+                I'm a 20-year-old student studying Computer Science at Queen Mary University of London. This is my final year project, and I hope you like it.
+                With technical proficiencies in Java, a good command of Python, and web development experience using HTML, CSS, and PHP, I am excited about the prospect of contributing to Queen Mary.
+                If you need any other information, please let me know.
+            `;
+
+            var chineseAboutMeTitle = "关于我";
+            var chineseAboutMeText = `
+                我是一名20岁的学生，在伦敦玛丽皇后大学学习计算机科学。这是我的最后一年的项目，希望你会喜欢。
+                我擅长Java，精通Python，并且在使用HTML、CSS和PHP进行网页开发方面有经验，我很期待能为玛丽皇后大学做出贡献。
+                如果您需要其他信息，请告诉我。
+            `;
+
+            // Show Chinese content
+            // Show Chinese content when the mouse is over the 'About Me' section.
+            aboutMeText.addEventListener('mouseenter', function() {
+                aboutMeTitle.textContent = chineseAboutMeTitle;
+                aboutMeText.textContent = chineseAboutMeText;
+            });
+            // Revert to English content when the mouse leaves the 'About Me' section.
+            aboutMeText.addEventListener('mouseleave', function() {
+                aboutMeTitle.textContent = englishAboutMeTitle;
+                aboutMeText.textContent = englishAboutMeText;
+            });
+        });
+    </script>
+</body>
+</html>

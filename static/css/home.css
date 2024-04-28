@@ -1,0 +1,271 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: #f0f2f5;
+    color: #FFFFFF;
+}
+#gifContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://cdn.dribbble.com/users/1084794/screenshots/5443614/dimbud-drib-1.gif') no-repeat center center / cover; /* Initial paused GIF */
+    display: block; /* Make sure it's visible */
+    z-index: -1; /* Keep the video behind other content */
+}
+header {
+    color: #fff;
+    padding: 300px 40px;
+    text-align: center;
+    height: 200px;
+    display: flex;
+    font-size:xx-large;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+/* Styles for the titles and their hover effect */
+header a, nav a {
+    color: white;
+    text-decoration: none;
+    font-size: xx-large;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+header a:hover, nav a:hover {
+    opacity: 0.7; /* Dim on hover */
+}
+/* Styles for sections */
+/* Base styles for sections */
+/* Base styles for sections */
+section {
+    line-height: 1.6;
+    max-width: 10000px;  /* Adjusted for a more reasonable max width */
+    padding: 60px 40px;
+    margin: 80px auto;
+    border-radius: 8px;
+    color: white;
+    transition: opacity 1.9s ease-in-out, transform 1.9s ease-in-out;
+    opacity: 0;  /* Start sections as invisible */
+    transform: translateY(20px); /* Start sections slightly translated downward */
+}
+
+/* Additional styles for .visible class */
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.text-content {
+    max-width: 600px; /* Maximum width of the text container */
+    font-size: 24px; /* Adjust the size as needed */
+    margin: 0 auto; /* Center the text container */
+    margin-right: 0;
+    margin-left: auto;
+    text-align: right;
+    
+}
+.text-content2 {
+    max-width: 600px; /* Maximum width of the text container */
+    margin: 0 auto; /* Center the text container */
+    font-size: 24px; /* Adjust the size as needed */
+    margin-left: 0;
+    margin-right: auto;
+    text-align: left;
+    
+}
+
+/* Targeting odd sections to align them to the extreme left */
+section:nth-of-type(odd) {
+    margin-right: 0;
+    margin-left: auto;
+    padding: 300px 40px; /* Increase padding to give more space inside the sections */
+    text-align: right;
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
+/* Targeting even sections to align them to the extreme right */
+}
+section:nth-of-type(even) {
+    margin-left: 0;
+    margin-right: auto;
+    padding: 300px 40px; /* Increase padding to give more space inside the sections */
+    text-align: left;
+}
+        /* Add this to the <style> section of your home.html */
+.animation-wrapper {
+    position: relative;
+    width: 100%; /* Take the full width of its container */
+    height: 100px; /* Set the height to fit the animation */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+footer {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+h1, h2 {
+    font-weight: 700;
+    font-size: 2400px; /* Adjust the size as needed */
+    color: white; /* Ensures that headings are white */
+}
+
+p {
+    font-size: 16px;
+    color: white; /* Ensures that paragraph text is white */
+}
+        /* Optional: If you have other specific elements, set their color to white */
+.some-other-class {
+    color: white;
+}
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    section {
+        padding: 20px;
+        max-width: 100%;
+        margin: 20px auto;
+        box-shadow: none;
+        transform: translateX(0%); /* Reset transformations on smaller screens */
+    }
+}
+
+/* General styles */
+body, h1, h2, p, section {
+    margin: 0;
+    padding: 0;
+    /* Rest of your base styles */
+}
+
+/* Container for sections */
+.container {
+    width: 100%;
+}
+
+/* Sections alignment */
+.align-left {
+    text-align: left;
+    margin-right: 50%; /* Adjust this value to push the section to the extreme left */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 20px;
+}
+
+.align-right {
+    text-align: right;
+    margin-left: 50%; /* Adjust this value to push the section to the extreme right */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 20px;
+}
+
+@keyframes move-the-circle {
+0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+    background-color: turquoise;
+}
+50% {
+    transform: translate(0, 50px) scale(0.4);
+    opacity: 0.5;
+    background-color: blue;
+}
+100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+    background-color: turquoise;
+}
+}
+/* CSS */
+/* General Navigation Styles */
+nav {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.6s;
+}
+
+nav ul {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+    display: flex; /* Align items in a row */
+    align-items: center;
+    justify-content: flex-start; /* Align items to the left */
+}
+
+nav ul li {
+    padding: 10px 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #555; /* Darken text on hover */
+}
+
+/* Container for the video */
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Adjust height as needed */
+    padding: 200px; /* Adjust the padding size as needed */
+    box-sizing: border-box; /* Ensures padding doesn't add to the width */
+}
+
+/* Styles for the video itself */
+video {
+    height: 18cm;
+    width: 36cm;
+    /* Add more properties as needed */
+}
+
+/* Utility and Helper Classes */
+.hide-item {
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0s 0.3s, opacity 0.3s ease;
+}
+
+/* Service link full opacity */
+nav ul li.services {
+    opacity: 1;
+    visibility: visible;
+}
+
+.show {
+    opacity: 1 !important; 
+    visibility: visible !important;
+}
+
+/* Fade in and out classes */
+.fade-in {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in, visibility 0.5s ease-in;
+}
+
+.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+/* Ensure the navbar has a transition for the opacity */
+#navbar {
+    transition: opacity 0.5s;
+}

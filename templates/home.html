@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Comment Toxicity Classifier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+    <div id="gifContainer"></div>
+
+    <script>
+    // Initialize a timer variable to control GIF animations.
+    let timer = null;
+    // Select the container where GIFs will be displayed.
+    const gifContainer = document.getElementById('gifContainer');
+    // URLs for the active and paused state GIFs.
+    const activeGif = "https://aejuice.com/wp-content/uploads/previews/Neon%20Glitch%20Shapes/Shapes/Chinese%20Symbols%202.gif";
+    const pauseGif = "https://cdn.dribbble.com/users/1084794/screenshots/5443614/dimbud-drib-1.gif";
+
+    //This is for text box
+     document.addEventListener("DOMContentLoaded", function() {
+            // Select all section elements for applying.
+            const sections = document.querySelectorAll('section');
+            // Create an intersection observer to animate sections as they come into view.
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Apply styles when element entering view.
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    } else {
+                        // Apply styles
+                        entry.target.style.opacity = '0';
+                        entry.target.style.transform = 'translateY(20px)';
+                    }
+                });
+            }, {
+                threshold: 0.1  // Trigger when 10% of the target is visible.
+            });
+
+            // Attach the observer to each section.
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        //This is for navigation bar
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get the navigation bar element.
+            const navbar = document.getElementById('navbar');
+            // Select all navigation list items except those with class 'services'.
+            const nonServiceLinks = document.querySelectorAll('nav ul li:not(.services)');
+            // Variable to store the last scroll position.
+            let lastScrollTop = 0;
+
+            // Add scroll event listener to the window.
+            window.addEventListener('scroll', () => {
+                // Get the current scroll position.
+                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > lastScrollTop){
+                    // If scrolling down, hide the non-service links.
+                    nonServiceLinks.forEach(li => li.classList.add('hide-item'));
+                } else {
+                    // If scrolling up, show the non-service links.
+                    nonServiceLinks.forEach(li => li.classList.remove('hide-item'));
+                }
+                // Update lastScrollTop to the current scroll position, reset to 0 if it's below 0.
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For mobile or negative scrolling scenarios.
+            }, false);
+        });
+        //This is for background
+        window.addEventListener('scroll', () => {
+            // Show the active GIF container and set the active GIF as the background
+            gifContainer.style.background = `url("${activeGif}") no-repeat center center / cover`;
+
+            // Clear any existing timer
+            clearTimeout(timer);
+
+            // Set a new timer
+            timer = setTimeout(() => {
+                // When scrolling stops, change the background to the pause GIF
+                gifContainer.style.background = `url("${pauseGif}") no-repeat center center / cover`;
+            }, 100); 
+        
+        });
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Code to set initial visibility or animations
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                if (link.textContent !== 'Services') {
+                link.style.opacity = '1';
+                }
+            });
+        });
+        //controlling the execution rate of functions
+        function debounce(func, wait, immediate) {
+            var timeout;  
+
+            return function() {
+                var context = this, args = arguments; 
+
+
+                var later = function() {
+                    timeout = null;  // Clears the timeout which prevents the function from being called.
+                    if (!immediate) func.apply(context, args);  // Call `func` if we're not in the immediate mode.
+                };
+
+                // Determines whether `func` should be called immediately.
+                var callNow = immediate && !timeout;  // Check if `immediate` is true and no timeout is active.
+
+                clearTimeout(timeout);  // Clear any existing timeout.
+                timeout = setTimeout(later, wait);  // Reset the timeout to delay function execution.
+
+                if (callNow) func.apply(context, args);  // If immediate mode is active, call `func` immediately.
+            };
+        };
+    // Variables to determine scroll direction and to set a timeout
+    let lastScrollTop = 0;
+    let navbarFadeOutTimeout;
+
+    window.addEventListener('scroll', function() {
+        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        if (currentScroll > lastScrollTop) {
+            // Scrolling down
+            document.querySelectorAll('#navbar ul li:not(.services)').forEach(el => {
+                el.classList.add('fade-out');
+                el.classList.remove('fade-in');
+            });
+        } else {
+            // Scrolling up
+            document.querySelectorAll('#navbar ul li:not(.services)').forEach(el => {
+                el.classList.add('fade-in');
+                el.classList.remove('fade-out');
+            });
+
+            // Clear any existing timeouts to avoid hiding elements prematurely
+            clearTimeout(navbarFadeOutTimeout);
+
+            // Optionally set a timeout to fade out the navigation links, except 'Services', after some time
+            navbarFadeOutTimeout = setTimeout(() => {
+                document.querySelectorAll('#navbar ul li:not(.services)').forEach(el => {
+                    el.classList.add('fade-out');
+                    el.classList.remove('fade-in');
+                });
+            }, 3000); // Delay in milliseconds (3000ms = 3 seconds)
+        }
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Updated for scroll direction
+    }, false);
+        // Implement debounce on scroll
+        window.addEventListener('scroll', debounce(handleScroll, 1000));
+    
+    </script>
+    <nav id="navbar">
+        <ul>
+        <li class="services"><a href="/model">Services</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <header>
+        <a href="/model">Explore the Comment Toxicity Classifier</a>
+        <p>Helping you navigate the complexities of online interactions</p>
+    </header>
+    <div class="container">
+    <section id="about-tool" class="left-aligned">
+        <h2 class="text-content">About This Tool|这是啥</h2>
+        <p class="text-content">This application uses advanced machine learning algorithms to predict the likelihood of a comment being toxic. 
+            It aims to foster safer online environments by assisting people can't understand Chinese or english in identifying harmful content effectively.
+            这个程序使用高级的机器学习算法来预测评论是否有没有仇恨言论。网络现状那么乱，如果不懂英文，这个检测器是很有必要的。</p>
+    </section>
+    <section class="right-aligned">
+        <h2 class="text-content2">How to Use|怎么用</h2>
+        <p class="text-content2">Go to the Toxicity Prediction Model page, type in a comment, and the tool will check it and tell you if it seems mean in different ways.
+            去仇恨言论检测器，输入评论，本鼠将检查它并告诉您这句中文或英语是否骂人OWO（正道的光）。
+        </p>
+    </section>
+    <section id="about-tool" class="left-aligned">
+        <h2 class="text-content">Learn More|更多信息</h2>
+        <p class="text-content">Curious about how it works? Check our <a href="/about">About</a> to learn more about our methods, technology, and the science behind the tool.
+            想不想看更多信息咩？（孤独的小熊）查看<a href="/about">本仓鼠</a>页面，看看关于小仓鼠的语言模型和本鼠捏。</p>
+    </section>
+    </div>
+    <div class="video-container">
+        <video controls>
+            <source src="{{ url_for('static', filename='videoplayback.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+</body>
+</html>

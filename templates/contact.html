@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Online Content Detector</title>
+    <style>
+        /* Initial state of the text */
+        .fade-in-text {
+            opacity: 0; /* Start with text fully transparent */
+            animation: fadeInAnimation 2s ease forwards; /* Apply the animation, change duration as needed */
+        }
+
+        /* Define the keyframes for the fade-in animation */
+        @keyframes fadeInAnimation {
+            to {
+                opacity: 1; /* End with text fully visible */
+            }
+        }
+        body {
+            margin: 0; /* Remove the default margin */
+            padding: 0; /* Remove the default padding */
+            overflow: hidden; /* Hide scrollbars if the content is too big */
+            background: url('https://i.pinimg.com/originals/36/82/cc/3682ccb6188e4b220862b45b740a4c33.gif') no-repeat center center fixed; /* Initial paused GIF */
+            background-size: cover; /* Cover the entire viewport */
+        }
+        section, .container {
+            padding: 0;
+            margin: 0;
+        }
+        /* CSS for Navigation Bar */
+        nav {
+            padding: 15px 0; /* Add padding to top and bottom of nav bar */
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* Align items in a row */
+            justify-content: flex-start; /* Align items to the left */
+            padding-left: 30px; /* Add padding to the left side of the list */
+        }
+
+        nav ul li {
+            padding: 10px 25px; 
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: xx-large; /* Increase the font size */
+            font-weight: bold; /* Make the font weight bold */
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a:focus {
+            color: #eaeaea; /* Lighten text color on hover/focus */
+            background-color: #333; /* Dark background on hover/focus */
+        }
+        h2{
+            color: white;
+        }
+        h1{
+            font-size: 1cm;
+        }
+        p{
+            color: white;
+            font-size: large;
+        }
+        section{
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        /* Add the CSS rules here */
+        a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease, box-shadow 0.3s ease;
+        }
+        a:hover {
+            color: #CCCCCC;
+        }
+        a:active {
+            box-shadow: 0 0 8px white;
+        }
+        .responsive-image {
+            max-width: 40%; /* Adjust the image size */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/model">Services</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1> OWO</h1>
+    </header>
+    
+    <section class="fade-in-text" id="contact-info">
+        <h2 id="contact-title">Contact Information</h2>
+        <p id="contact-details">
+            <strong>Bingfan Xu</strong><br>
+            450 Mile End Road, London, E1 4GG<br>
+            Email: <a href="mailto:bxu657590@gmail.com">bxu657590@gmail.com</a><br>
+            Phone: <a href="tel:+447470867593">+44 7470 867593</a>
+        </p>
+    </section>
+    <img src="{{ url_for('static', filename='images/bear.png') }}" class="responsive-image" alt="Hamster Sitting">
+    <script>
+        // Listen for the full loading of the document to execute the following code.
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch and store elements related to contact information from the document.
+            var contactInfo = document.getElementById('contact-info');
+            var contactTitle = document.getElementById('contact-title');
+            var contactDetails = document.getElementById('contact-details');
+
+            // Set English title and contact details to be shown by default.
+            var englishTitle = "Contact Information";
+            var englishDetails = "<strong>Bingfan Xu</strong><br>450 Mile End Road, London, E1 4GG<br>Email: <a href='mailto:bxu657590@gmail.com'>bxu657590@gmail.com</a><br>Phone: <a href='tel:+447470867593'>+44 7470 867593</a>";
+
+            // Set Chinese title and contact details for when they're needed.
+            var chineseTitle = "联系信息";
+            var chineseDetails = "<strong>徐炳帆</strong><br>伦敦迈尔恩德路450号, E1 4GG<br>电子邮件: <a href='mailto:bxu657590@gmail.com'>bxu657590@gmail.com</a><br>电话: <a href='tel:+447470867593'>+44 7470 867593</a>";
+
+            // Change the display to Chinese contact information when the mouse enters the contact area.
+            contactInfo.addEventListener('mouseenter', function() {
+                contactTitle.innerHTML = chineseTitle;
+                contactDetails.innerHTML = chineseDetails;
+            });
+
+            // Change to English contact information when the mouse leaves the contact area.
+            contactInfo.addEventListener('mouseleave', function() {
+                contactTitle.innerHTML = englishTitle;
+                contactDetails.innerHTML = englishDetails;
+            });
+        });
+    </script>
+</body>
+</html>
